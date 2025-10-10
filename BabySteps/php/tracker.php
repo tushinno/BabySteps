@@ -16,7 +16,7 @@ if ($stmt) {
     if ($stmt->execute()) {
         $stmt->bind_result($due_date_db);
         if ($stmt->fetch()) {
-            $due_date = $due_date_db ?? '';
+            $due_date = $due_date_db;
         }
     }
     $stmt->close();

@@ -1,21 +1,33 @@
 <?php
 require_once __DIR__ . '/check_session.php';
 
-if (!isset($_SESSION['signup'])) {
-    header("Location: ../html/signup_step1.php");
+if (empty($_SESSION['signup'])) {
+    header("Location: ../php/signup_step1.php");
     exit;
 }
 
 $errors = [];
-$due_date = $_SESSION['signup']['due_date'] ?? '';
+$due_date = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $due_date = trim($_POST['due_date'] ?? '');
 
     if ($due_date === '') {
         $errors[] = "Please enter your due date.";
-    } elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $due_date)) {
-        $errors[] = "Due date format is invalid. Use YYYY-MM-DD.";
+    } else {
+        $today = new DateTime();
+        $entered_date = new DateTime($due_date);
+        $days_diff = (int)$entered_date->diff($today)->days;
+
+        if ($entered_date < (clone $today)->modify('-3 years')) {
+            $errors[] = "That’s way too far in the past! Please enter a recent date.";
+        } elseif ($entered_date < $today && $days_diff > 280) {
+            $errors[] = "That’s more than 40 weeks ago!";
+        } elseif ($entered_date < $today) {
+            $errors[] = "Your child is already born! Please enter a future date.";
+        } elseif ($entered_date > (clone $today)->modify('+1 year')) {
+            $errors[] = "That’s too far in the future! Please enter a realistic due date.";
+        }
     }
 
     if (empty($errors)) {

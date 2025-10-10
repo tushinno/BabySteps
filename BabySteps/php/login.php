@@ -7,8 +7,8 @@ $identifier = '';
 $password = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $identifier = trim($_POST['identifier'] ?? '');
-    $password = trim($_POST['password'] ?? '');
+    $identifier = trim($_POST['identifier']);
+    $password = trim($_POST['password']);
 
     if ($identifier === '' || $password === '') {
         $errors[] = "All fields are required.";

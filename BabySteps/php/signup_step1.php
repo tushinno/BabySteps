@@ -1,17 +1,17 @@
 <?php
 require_once __DIR__ . '/check_session.php';
 
-if (!isset($_SESSION['signup'])) {
+if (empty($_SESSION['signup'])) {
     $_SESSION['signup'] = [];
 }
 
 $errors = [];
-$username = $_SESSION['signup']['username'] ?? '';
-$email = $_SESSION['signup']['email'] ?? '';
+$username = '';
+$email = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
-    $email = trim($_POST['email'] ?? '');
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
 
     if ($username === '' || $email === '') {
         $errors[] = "All fields are required.";

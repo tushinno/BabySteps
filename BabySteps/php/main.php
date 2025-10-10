@@ -6,6 +6,6 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$username = $_SESSION['username'] ?? 'Guest';
+$username = $_SESSION['username'];
 
 include __DIR__ . '/../html/main.php';
