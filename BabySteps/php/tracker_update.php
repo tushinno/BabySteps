@@ -14,3 +14,4 @@ $conn->close();
 $_SESSION['flash_success'][] = 'Due date updated.';
 header('Location: tracker.php');
 exit;
+?>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BabySteps</title>
   <link rel="icon" href="../image/babysteps_logo.jpg" type="image/jpeg">
-  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/references.css">
 </head>
 <body>
 
