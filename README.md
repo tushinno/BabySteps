@@ -1,5 +1,5 @@
 # BabySteps
-A Pregnancy Milestone Web App with HTML, CSS, JS, and PHP
+A Pregnancy Milestone Web App with HTML, CSS, and PHP
 
 ## Overview
 BabySteps helps expecting mothers track their pregnancy week by week.  
@@ -13,5 +13,5 @@ It also includes a personal journal for saving notes and memories.
 - Personal journal (add/view/delete entries)  
 
 ## Tech Stack
-- HTML, CSS, JavaScript  
+- HTML & CSS  
 - PHP & MySQL (via XAMPP)  
