@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BabySteps</title>
-  <link rel="icon" href="../image/babysteps_logo.jpg" type="image/jpeg">
-  <link rel="stylesheet" href="../css/tracker.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BabySteps</title>
+<link rel="icon" href="../image/babysteps_logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="../css/tracker.css">
 </head>
 <body>
 
@@ -19,17 +19,35 @@
     <a href="../php/tracker.php" class="active">Pregnancy Tracker</a>
     <a href="../php/journal.php">Journal</a>
     <a href="../php/references.php">References</a>
+    <?php if (strtolower($role) === 'admin'): ?>
+      <a href="../php/admin.php" class="admin-btn">Admin Panel</a>
+    <?php endif; ?>
     <a href="../php/logout.php">Logout</a>
   </nav>
 </header>
 
 <section class="mowm">
   <img src="../image/pregnant_lady2.jfif" class="bg-img" alt="Pregnant Lady">
-
   <div class="tracker-wrapper">
     <div class="bg-gray-box"></div>
-
     <div class="tracker-container">
+
+      <div class="alert-container">
+        <?php if (!empty($flash_success)): ?>
+          <div class="alert success">
+            <?php foreach ((array)$flash_success as $msg): ?>
+              <p><?= htmlspecialchars($msg, ENT_QUOTES) ?></p>
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
+        <?php if (!empty($flash_error)): ?>
+          <div class="alert error">
+            <?php foreach ((array)$flash_error as $msg): ?>
+              <p><?= htmlspecialchars($msg, ENT_QUOTES) ?></p>
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
+      </div>
 
       <div class="due-update-box">
         <div class="due-left">
@@ -49,20 +67,17 @@
         <div class="time-box">
           <h3>Countdown</h3>
           <p class="small"><?= $countdown_display ?></p>
-
           <h3>Current Week</h3>
           <p class="small"><?= $week_display ?></p>
-
-          <?php if (!empty($trim)): ?>
+          <?php if (!empty($trim_display)): ?>
             <h3>Trimester</h3>
-            <p class="small"><?= $trim ?></p>
+            <p class="small"><?= $trim_display ?></p>
           <?php endif; ?>
         </div>
 
         <div class="milestone-box">
           <h2>Weekly Milestone</h2>
           <p class="small"><?= $milestone_display ?></p>
-
           <div class="progress-wrap">
             <div class="small">Progress</div>
             <div class="progress-bar" aria-hidden="true">

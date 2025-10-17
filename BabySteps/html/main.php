@@ -11,7 +11,7 @@
 
 <header class="header">
   <div class="header-left">
-    <img src="../image/babysteps_logo.jpg" class="logo">
+    <img src="../image/babysteps_logo.jpg" class="logo" alt="BabySteps">
     <h1 class="title">BabySteps</h1>
   </div>
   <nav class="nav">
@@ -19,12 +19,15 @@
     <a href="../php/tracker.php">Pregnancy Tracker</a>
     <a href="../php/journal.php">Journal</a>
     <a href="../php/references.php">References</a>
+    <?php if (strtolower($role) === 'admin'): ?>
+      <a href="../php/admin.php" class="admin-btn">Admin Panel</a>
+    <?php endif; ?>
     <a href="../php/logout.php">Logout</a>
   </nav>
 </header>
 
 <section class="mowm">
-  <img src="../image/pregnant_lady2.jfif" class="bg-img">
+  <img src="../image/pregnant_lady2.jfif" class="bg-img" alt="">
   <div class="welcome-box">
     <h2>Welcome, <?php echo htmlspecialchars($username); ?>!</h2>
     <p>You are now logged in. Enjoy tracking your pregnancy journey with BabySteps.</p>

@@ -21,6 +21,9 @@
       <a href="../php/tracker.php">Pregnancy Tracker</a>
       <a href="../php/journal.php">Journal</a>
       <a href="../php/references.php" class="active">References</a>
+      <?php if (strtolower($role) === 'admin'): ?>
+      <a href="../php/admin.php" class="admin-btn">Admin Panel</a>
+      <?php endif; ?>
       <a href="../php/logout.php">Logout</a>
     </nav>
   </div>
