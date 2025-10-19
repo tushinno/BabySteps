@@ -14,10 +14,8 @@ if ($due_date === '') {
     $entered_date = new DateTime($due_date);
     $days_diff = (int)$entered_date->diff($today)->days;
 
-    if ($entered_date < (clone $today)->modify('-3 years')) {
+    if ($entered_date < (clone $today)->modify('-2 years')) {
         $errors[] = 'That’s way too far in the past! Please enter a recent date.';
-    } elseif ($entered_date < $today && $days_diff > 280) {
-        $errors[] = 'That’s more than 40 weeks ago!';
     } elseif ($entered_date < $today) {
         $errors[] = 'Your child is already born! Please enter a future date.';
     } elseif ($entered_date > (clone $today)->modify('+1 year')) {

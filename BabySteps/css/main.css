@@ -1,13 +1,13 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body, html {
   font-family: Arial, sans-serif;
   background-color: #fffaf6;
   color: #4E2705;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .header {
@@ -43,7 +43,7 @@ body, html {
   align-items: center;
 }
 
-.nav a{
+.nav a {
   text-decoration: none;
   font-weight: bold;
   font-size: 15px;
@@ -53,7 +53,8 @@ body, html {
   transition: background 0.3s, color 0.3s;
 }
 
-.nav a:hover, .admin-btn:hover{
+.nav a:hover,
+.admin-btn:hover {
   background-color: #dc7259;
   color: white;
 }

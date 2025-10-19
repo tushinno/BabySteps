@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BabySteps</title>
+<title>Add Tip - BabySteps Admin</title>
 <link rel="icon" href="../image/babysteps_logo.jpg" type="image/jpeg">
-<link rel="stylesheet" href="../css/journal_edit.css">
+<link rel="stylesheet" href="../css/tip_add.css">
 </head>
 <body class="single-entry">
 <header class="header">
@@ -16,7 +16,7 @@
   <nav class="nav">
     <a href="../php/main.php">Home</a>
     <a href="../php/tracker.php">Pregnancy Tracker</a>
-    <a href="../php/journal.php" class="active">Journal</a>
+    <a href="../php/journal.php">Journal</a>
     <a href="../php/tips.php">Tips</a>
     <?php if (!empty($role) && strtolower($role) === 'admin'): ?>
       <a href="../php/admin.php" class="admin-btn">Admin Panel</a>
@@ -39,16 +39,19 @@
         <?php endif; ?>
 
         <div class="journal-entry">
-          <h2>Edit Entry</h2>
-          <form method="POST" action="../php/journal_edit.php?id=<?= (int)$entry_id ?>" class="entry-form">
-            <input type="text" name="title" placeholder="Title" value="<?= htmlspecialchars($title, ENT_QUOTES) ?>" required>
-            <textarea name="content" placeholder="Write your thoughts here." rows="8" required><?= htmlspecialchars($content, ENT_QUOTES) ?></textarea>
+          <h2>Add New Tip</h2>
+          <form method="POST" action="../php/tip_add.php" class="entry-form">
+            <input type="text" name="category" placeholder="Category (e.g. Foods to Avoid)" value="<?= htmlspecialchars($prefill_category ?? ($_POST['category'] ?? ''), ENT_QUOTES) ?>" required>
+            <input type="text" name="subcategory" placeholder="Subcategory (optional)" value="<?= htmlspecialchars($_POST['subcategory'] ?? '', ENT_QUOTES) ?>">
+            <textarea name="tip" placeholder="Enter the tip content..." rows="6" required><?= htmlspecialchars($_POST['tip'] ?? '', ENT_QUOTES) ?></textarea>
+
             <div class="entry-btns">
-              <a class="btn-link" href="../php/journal.php"><button type="button" class="btn-action cancel">Cancel</button></a>
-              <button type="submit" class="btn-action">Save</button>
+              <a class="btn-link" href="../php/admin.php"><button type="button" class="btn-action cancel">Cancel</button></a>
+              <button type="submit" class="btn-action">Add Tip</button>
             </div>
           </form>
         </div>
+
       </div>
     </div>
   </div>

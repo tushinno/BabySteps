@@ -18,7 +18,7 @@
     <a href="../php/main.php" class="active">Home</a>
     <a href="../php/tracker.php">Pregnancy Tracker</a>
     <a href="../php/journal.php">Journal</a>
-    <a href="../php/references.php">References</a>
+    <a href="../php/tips.php">Tips</a>
     <?php if (strtolower($role) === 'admin'): ?>
       <a href="../php/admin.php" class="admin-btn">Admin Panel</a>
     <?php endif; ?>
@@ -35,7 +35,7 @@
 </section>
 
 <div class="motivation-box">
-  Let's stay on track!
+  Let's stay on track, mowm!
 </div>
 
 <section class="content-section">
@@ -53,7 +53,7 @@
     <div class="info-box">
       <h3>Wellness Tips</h3>
       <p>Stay healthy with curated tips on nutrition, self-care, and activities that keep you and your baby safe.</p>
-      <a href="../php/references.php" class="btn">View Tips</a>
+      <a href="../php/tips.php" class="btn">View Tips</a>
     </div>
   </div>
 </section>

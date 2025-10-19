@@ -18,6 +18,7 @@ $flash_success = $_SESSION['flash_success'] ?? [];
 $flash_error = $_SESSION['flash_error'] ?? [];
 unset($_SESSION['flash_success'], $_SESSION['flash_error']);
 
+// --- USER DELETE ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_user_id'])) {
     $del_id = (int) $_POST['delete_user_id'];
     if ($del_id === (int) $_SESSION['user_id']) {
@@ -34,10 +35,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_user_id'])) {
     }
 }
 
+// --- TIP DELETE ---
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_tip_id'])) {
+    $del_tip_id = (int) $_POST['delete_tip_id'];
+    $stmt = $conn->prepare('DELETE FROM wellness_tips WHERE id = ?');
+    $stmt->bind_param('i', $del_tip_id);
+    if ($stmt->execute()) {
+        $flash_success[] = 'Tip deleted successfully.';
+    } else {
+        $flash_error[] = 'Error deleting tip: ' . $stmt->error;
+    }
+    $stmt->close();
+}
+
+// Fetch users
 $stmt = $conn->prepare('SELECT id, username, email, due_date, created_at, role FROM users ORDER BY id ASC');
 $stmt->execute();
 $result = $stmt->get_result();
 $users = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+$stmt->close();
+
+// Fetch tips
+$stmt = $conn->prepare('SELECT id, category, subcategory, tip FROM wellness_tips ORDER BY category ASC, id ASC');
+$stmt->execute();
+$result = $stmt->get_result();
+$tips = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 $stmt->close();
 
 $conn->close();

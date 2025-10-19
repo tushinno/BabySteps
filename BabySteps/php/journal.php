@@ -3,19 +3,16 @@ require_once __DIR__ . '/check_session.php';
 require_once __DIR__ . '/db_connection.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header('Location: login.php');
     exit;
 }
 
-$user_id = (int) $_SESSION['user_id'];
-$username = $_SESSION['username'] ?? '';
+$uid = (int) ($_SESSION['user_id'] ?? 0);
 $role = $_SESSION['role'] ?? '';
+$username = $_SESSION['username'] ?? '';
 
 $stmt = $conn->prepare("SELECT id, title, content, created_at FROM journal_entries WHERE user_id = ? ORDER BY created_at DESC");
-if (!$stmt) {
-    die("Database error");
-}
-$stmt->bind_param('i', $user_id);
+$stmt->bind_param('i', $uid);
 $stmt->execute();
 $result = $stmt->get_result();
 $entries = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];

@@ -1,0 +1,142 @@
+/* reset & base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { font-family: Arial, sans-serif; background-color: #fffaf6; color: #4E2705; }
+
+/* header (same as main.css) */
+.header {
+  position: absolute;
+  width: 100%;
+  background-color: #FFF4E1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  z-index: 10;
+}
+.header-left { display: flex; align-items: center; gap: 10px; }
+.logo { height: 50px; border-radius: 50%; }
+.title { font-size: 26px; font-weight: bold; }
+.nav { display: flex; gap: 10px; align-items: center; }
+.nav a { text-decoration: none; font-weight: bold; font-size: 15px; color: #4E2705; padding: 8px 16px; border-radius: 12px; transition: background 0.3s, color 0.3s; }
+.nav a:hover, .admin-btn:hover { background-color: #dc7259; color: white; }
+.nav a.active { background-color: #dc7259; color: white; }
+
+/* hero */
+.mowm { position: relative; width: 100%; height: 90vh; overflow: hidden; }
+.bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+
+/* welcome box */
+.welcome-box {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  background-color: #FFF4E1;
+  padding: 30px;
+  width: 430px;
+  max-width: calc(100% - 40px);
+  border-radius: 53px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  text-align: left;
+  z-index: 5;
+}
+.welcome-box h2 { margin-bottom: 12px; font-size: 28px; }
+.welcome-box p { font-size: 15px; line-height: 1.45; margin-bottom: 14px; }
+
+/* motivation */
+.motivation-box {
+  margin: -40px auto 60px;
+  background-color: #FFF4E1;
+  font-weight: bold;
+  font-size: 28px;
+  padding: 20px 100px;
+  border-radius: 53px;
+  text-align: center;
+  width: fit-content;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  position: relative;
+  z-index: 5;
+}
+
+/* PAGE WRAP */
+.page-wrap {
+  max-width: 1100px;
+  margin: -40px auto 80px; /* pulled up over hero */
+  padding: 24px;
+}
+
+/* INFO-CONTAINER per category (matches main.css style) */
+.info-container {
+  background-color: #FFF4E1; /* cream container */
+  border-radius: 40px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  padding: 30px;
+  margin-bottom: 28px;
+}
+
+/* container title centered */
+.container-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #4E2705;
+  margin-bottom: 18px;
+}
+
+/* Cards layout inside each info-container */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+/* INFO-BOX: previous card layout, but recolored to match main.css */
+.info-box {
+  background-color: white; /* white card like info-box in main.css */
+  border-radius: 30px;     /* bigger rounded corners */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  padding: 22px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid rgba(78,39,5,0.04);
+}
+
+/* subheading inside card */
+.info-sub {
+  font-size: 15px;
+  font-weight: 800;
+  color: #6b442e;
+  margin-bottom: 8px;
+}
+
+/* text inside card */
+.info-text {
+  font-size: 14px;
+  color: #4E2705;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  flex: 1;
+}
+
+/* small separator (optional) */
+.info-box + .info-box { }
+
+/* no-tips */
+.no-tips {
+  text-align: center;
+  padding: 40px;
+  color: #7a5b46;
+  font-weight: 600;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .welcome-box { left: 50%; width: calc(100% - 55px); transform: translate(-50%, -50%); padding: 20px; }
+  .motivation-box { font-size: 22px; padding: 15px 30px; margin: -30px auto 50px; }
+  .page-wrap { padding: 16px; }
+  .cards { grid-template-columns: 1fr; }
+  .nav { gap: 6px; }
+  .mowm { height: 70vh; }
+}

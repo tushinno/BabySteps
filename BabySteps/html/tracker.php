@@ -18,7 +18,7 @@
     <a href="../php/main.php">Home</a>
     <a href="../php/tracker.php" class="active">Pregnancy Tracker</a>
     <a href="../php/journal.php">Journal</a>
-    <a href="../php/references.php">References</a>
+    <a href="../php/tips.php">Tips</a>
     <?php if (strtolower($role) === 'admin'): ?>
       <a href="../php/admin.php" class="admin-btn">Admin Panel</a>
     <?php endif; ?>
@@ -27,7 +27,7 @@
 </header>
 
 <section class="mowm">
-  <img src="../image/pregnant_lady2.jfif" class="bg-img" alt="Pregnant Lady">
+  <img src="../image/pregnant_lady2.jfif" class="bg-img">
   <div class="tracker-wrapper">
     <div class="bg-gray-box"></div>
     <div class="tracker-container">
@@ -69,9 +69,9 @@
           <p class="small"><?= $countdown_display ?></p>
           <h3>Current Week</h3>
           <p class="small"><?= $week_display ?></p>
-          <?php if (!empty($trim_display)): ?>
+          <?php if (!empty($trimester)): ?>
             <h3>Trimester</h3>
-            <p class="small"><?= $trim_display ?></p>
+            <p class="small"><?= $trimester ?></p>
           <?php endif; ?>
         </div>
 
@@ -81,10 +81,10 @@
           <div class="progress-wrap">
             <div class="small">Progress</div>
             <div class="progress-bar" aria-hidden="true">
-              <div class="progress-fill" style="width: <?= $progress_pct ?>%;"></div>
+              <div class="progress-fill" style="width: <?= $progress ?>%;"></div>
             </div>
             <div class="progress-text small">
-              <?= $progress_pct ?>% (Week <?= $week_display ?> of 40)
+              <?= $progress ?>% (Week <?= $week_display ?> of 40)
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$username = $_SESSION['username'] ?? '';
-$role = $_SESSION['role'] ?? '';
+$username = $_SESSION['username'];
+$role = $_SESSION['role'];
 
 include __DIR__ . '/../html/main.php';

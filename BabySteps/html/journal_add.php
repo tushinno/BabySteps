@@ -1,7 +1,3 @@
-<?php
-$role = $role ?? '';
-$flash_error = $flash_error ?? [];
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +5,7 @@ $flash_error = $flash_error ?? [];
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>BabySteps</title>
 <link rel="icon" href="../image/babysteps_logo.jpg" type="image/jpeg">
-<link rel="stylesheet" href="../css/journal.css">
+<link rel="stylesheet" href="../css/journal_add.css">
 </head>
 <body class="single-entry">
 <header class="header">
@@ -21,7 +17,7 @@ $flash_error = $flash_error ?? [];
     <a href="../php/main.php">Home</a>
     <a href="../php/tracker.php">Pregnancy Tracker</a>
     <a href="../php/journal.php">Journal</a>
-    <a href="../php/references.php">References</a>
+    <a href="../php/tips.php">Tips</a>
     <?php if (!empty($role) && strtolower($role) === 'admin'): ?>
       <a href="../php/admin.php" class="admin-btn">Admin Panel</a>
     <?php endif; ?>
