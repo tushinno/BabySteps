@@ -38,7 +38,7 @@
   </div>
 </section>
 
-<div class="motivation-box">Stay strong mowm!</div>
+<div class="motivation-box">Stay strong, mowm!</div>
 
 <main id="tips" class="page-wrap">
   <?php if (empty($groupedTips)): ?>

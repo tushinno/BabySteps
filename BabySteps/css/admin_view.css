@@ -37,6 +37,35 @@ body, html {
   font-weight: bold;
 }
 
+.nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dc7259;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav a:hover {
+  background-color: #c65f4a;
+  color: #fff;
+}
+
+
 .mowm {
   position: relative;
   width: 100%;

@@ -14,6 +14,10 @@
     <img src="../image/babysteps_logo.jpg" class="logo" alt="BabySteps Logo">
     <h1 class="title">BabySteps Admin</h1>
   </div>
+  <nav class="nav">
+    <a href="../php/main.php">User End Pages</a>
+    <a href="../php/logout.php">Logout</a>
+  </nav>
 </header>
 
 <section class="mowm">
@@ -74,7 +78,7 @@
     </div>
 
     <div class="back-btn-container">
-      <a href="../php/main.php" class="btn">Back to Main Page</a>
+      <a href="../php/signup_step1.php" class="btn">Add Account</a>
     </div>
 
   </div>
