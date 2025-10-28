@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2025 at 11:53 PM
+-- Generation Time: Oct 28, 2025 at 08:32 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -40,9 +40,9 @@ CREATE TABLE `journal_entries` (
 --
 
 INSERT INTO `journal_entries` (`id`, `user_id`, `title`, `content`, `created_at`) VALUES
-(5, 1, 'hi', 'miss u', '2025-10-17 04:52:18'),
-(7, 1, 'auq', 'na', '2025-10-17 05:41:38'),
-(9, 1, 'qwd', 'qd', '2025-10-17 05:41:50');
+(11, 2, 'goldeh', 'baby', '2025-10-18 03:18:41'),
+(13, 20, '1dw1', 'd1d1qweqweqwe', '2025-10-20 03:45:00'),
+(15, 26, 'da', 'asdaadsa', '2025-10-25 14:50:42');
 
 --
 -- Indexes for dumped tables
@@ -52,7 +52,8 @@ INSERT INTO `journal_entries` (`id`, `user_id`, `title`, `content`, `created_at`
 -- Indexes for table `journal_entries`
 --
 ALTER TABLE `journal_entries`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_journal_user` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -62,7 +63,17 @@ ALTER TABLE `journal_entries`
 -- AUTO_INCREMENT for table `journal_entries`
 --
 ALTER TABLE `journal_entries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `journal_entries`
+--
+ALTER TABLE `journal_entries`
+  ADD CONSTRAINT `fk_journal_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

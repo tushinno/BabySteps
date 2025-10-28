@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$uid = (int) ($_SESSION['user_id'] ?? 0);
+$uid = (int) $_SESSION['user_id'];
 $role = $_SESSION['role'] ?? '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -20,7 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors)) {
-        $stmt = $conn->prepare("INSERT INTO journal_entries (user_id, title, content, created_at) VALUES (?, ?, ?, NOW())");
+        $stmt = $conn->prepare(
+            "INSERT INTO journal_entries (user_id, title, content, created_at)
+             VALUES (?, ?, ?, NOW())"
+        );
+
         if ($stmt) {
             $stmt->bind_param('iss', $uid, $title, $content);
             $stmt->execute();
@@ -29,9 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: journal.php');
             exit;
         }
-        $errors[] = 'Database error.';
     }
-
     $_SESSION['flash_error'] = $errors;
     header('Location: journal_add.php');
     exit;

@@ -7,11 +7,11 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$uid = (int) ($_SESSION['user_id'] ?? 0);
+$uid = (int) $_SESSION['user_id'];
 $role = $_SESSION['role'] ?? '';
-$id = (int) ($_GET['id'] ?? 0);
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-if ($id <= 0) {
+if ($id === false || $id <= 0) {
     header('Location: journal.php');
     exit;
 }
@@ -26,7 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors)) {
-        $stmt = $conn->prepare("UPDATE journal_entries SET title = ?, content = ? WHERE id = ? AND user_id = ?");
+        $stmt = $conn->prepare(
+            "UPDATE journal_entries
+             SET title = ?, content = ?
+             WHERE id = ? AND user_id = ?"
+        );
+
         if ($stmt) {
             $stmt->bind_param('ssii', $title, $content, $id, $uid);
             $stmt->execute();
@@ -35,15 +40,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: journal.php');
             exit;
         }
-        $errors[] = 'Database error.';
     }
-
     $_SESSION['flash_error'] = $errors;
     header("Location: journal_edit.php?id={$id}");
     exit;
 }
 
-$stmt = $conn->prepare("SELECT title, content FROM journal_entries WHERE id = ? AND user_id = ? LIMIT 1");
+$stmt = $conn->prepare(
+    "SELECT title, content
+     FROM journal_entries
+     WHERE id = ? AND user_id = ?
+     LIMIT 1"
+);
 $stmt->bind_param('ii', $id, $uid);
 $stmt->execute();
 $stmt->bind_result($title, $content);

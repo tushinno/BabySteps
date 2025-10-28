@@ -7,42 +7,51 @@ $identifier = '';
 $password = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $identifier = trim($_POST['identifier']);
-    $password = trim($_POST['password']);
+    $identifier = trim($_POST['identifier'] ?? '');
+    $password = trim($_POST['password'] ?? '');
 
     if ($identifier === '' || $password === '') {
-        $errors[] = "All fields are required.";
+        $errors[] = 'All fields are required.';
     } else {
-        $stmt = $conn->prepare("SELECT id, username, email, password, role FROM users WHERE username = ? OR email = ? LIMIT 1");
-        $stmt->bind_param("ss", $identifier, $identifier);
-        $stmt->execute();
-        $stmt->store_result();
+        $stmt = $conn->prepare(
+            "SELECT id, username, email, password, role
+             FROM users
+             WHERE username = ? OR email = ?
+             LIMIT 1"
+        );
 
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id, $username, $email_db, $hashed_password, $role);
-            $stmt->fetch();
+        if ($stmt) {
+            $stmt->bind_param('ss', $identifier, $identifier);
+            $stmt->execute();
+            $stmt->store_result();
 
-            if (password_verify($password, $hashed_password)) {
-                $_SESSION['user_id'] = $id;
-                $_SESSION['username'] = $username;
-                $_SESSION['role'] = $role;
+            if ($stmt->num_rows > 0) {
+                $stmt->bind_result($id, $username, $email_db, $hashed_password, $role);
+                $stmt->fetch();
 
-                if (strtolower($role) === 'admin') {
-                    header("Location: ../php/admin.php");
+                if (password_verify($password, $hashed_password)) {
+                    $_SESSION['user_id'] = $id;
+                    $_SESSION['username'] = $username;
+                    $_SESSION['role'] = $role;
+
+                    if (strtolower($role) === 'admin') {
+                        header('Location: ../php/admin.php');
+                    } else {
+                        header('Location: ../php/main.php');
+                    }
+                    exit;
                 } else {
-                    header("Location: ../php/main.php");
+                    $errors[] = 'Invalid password.';
                 }
-                exit;
             } else {
-                $errors[] = "Invalid password.";
+                $errors[] = 'No account found with that username or email.';
             }
-        } else {
-            $errors[] = "No account found with that username or email.";
-        }
 
-        $stmt->close();
+            $stmt->close();
+        }
     }
 }
 
 $conn->close();
+
 include __DIR__ . '/../html/login.php';

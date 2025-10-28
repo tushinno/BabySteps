@@ -7,4 +7,3 @@ if (isset($_SESSION['user_id'])) {
 }
 
 include __DIR__ . '/../html/landing.php';
-?>

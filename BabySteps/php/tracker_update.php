@@ -12,7 +12,7 @@ if ($due_date === '') {
 } else {
     $today = new DateTime();
     $entered_date = new DateTime($due_date);
-    $days_diff = (int)$entered_date->diff($today)->days;
+    $days_diff = (int) $entered_date->diff($today)->days;
 
     if ($entered_date < (clone $today)->modify('-2 years')) {
         $errors[] = 'That’s way too far in the past! Please enter a recent date.';
@@ -29,8 +29,8 @@ if (!empty($errors)) {
     exit;
 }
 
-$stmt = $conn->prepare("UPDATE users SET due_date = ? WHERE id = ?");
-$stmt->bind_param("si", $due_date, $user_id);
+$stmt = $conn->prepare('UPDATE users SET due_date = ? WHERE id = ?');
+$stmt->bind_param('si', $due_date, $user_id);
 $stmt->execute();
 $stmt->close();
 $conn->close();

@@ -7,15 +7,20 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$uid = (int) ($_SESSION['user_id'] ?? 0);
+$uid = (int) $_SESSION['user_id'];
 $role = $_SESSION['role'] ?? '';
 $username = $_SESSION['username'] ?? '';
 
-$stmt = $conn->prepare("SELECT id, title, content, created_at FROM journal_entries WHERE user_id = ? ORDER BY created_at DESC");
+$stmt = $conn->prepare(
+    "SELECT id, title, content, created_at
+     FROM journal_entries
+     WHERE user_id = ?
+     ORDER BY created_at DESC"
+);
+
 $stmt->bind_param('i', $uid);
 $stmt->execute();
-$result = $stmt->get_result();
-$entries = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+$entries = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
 $flash_success = $_SESSION['flash_success'] ?? [];

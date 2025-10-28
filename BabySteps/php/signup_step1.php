@@ -14,17 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
 
     if ($username === '' || $email === '') {
-        $errors[] = "All fields are required.";
+        $errors[] = 'All fields are required.';
     } elseif (strlen($username) < 3) {
-        $errors[] = "Username must be at least 3 characters long.";
+        $errors[] = 'Username must be at least 3 characters long.';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Please enter a valid email address.";
+        $errors[] = 'Please enter a valid email address.';
     }
 
     if (empty($errors)) {
         $_SESSION['signup']['username'] = $username;
         $_SESSION['signup']['email'] = $email;
-        header("Location: ../php/signup_step2.php");
+        header('Location: ../php/signup_step2.php');
         exit;
     }
 }
