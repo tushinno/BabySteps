@@ -10,7 +10,7 @@ It also includes a personal journal for saving notes and memories.
 - User signup and login  
 - Pregnancy week calculator and countdown  
 - Weekly milestones and wellness tips  
-- Personal journal (add/view/delete entries)  
+- Personal journal (add/edit/delete entries)  
 
 ## Tech Stack
 - HTML & CSS  
