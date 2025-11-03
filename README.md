@@ -15,3 +15,14 @@ It also includes a personal journal for saving notes and memories.
 ## Tech Stack
 - HTML & CSS  
 - PHP & MySQL (via XAMPP)  
+
+## User Credentials
+- XAMPP (with Apache and MySQL)
+- Browser (Chrome or Edge)
+- VS Code or Sublime Text (or any PHP IDE)
+
+## How to run
+- Extract zip file and move to folder xampp/htdocs
+- Open xampp and click start on Apache and Mysql
+- Click phpmyadmin and import db_babysteps
+- Open browser and type localhost/babysteps/php/landing.php
